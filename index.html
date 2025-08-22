@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>inBTI 테스트</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    .question, .result { display: none; }
+    .active { display: block; }
+    button { margin: 10px; padding: 10px 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div id="start" class="active">
+    <h1>inBTI 테스트</h1>
+    <button onclick="startTest()">시작하기</button>
+  </div>
+  <div id="q1" class="question">
+    <h2>Q1. 당신은 아침형 인간인가요?</h2>
+    <button onclick="answer(1)">예</button>
+    <button onclick="answer(0)">아니오</button>
+  </div>
+  <div id="result" class="result">
+    <h2>테스트 결과</h2>
+    <p id="resultText"></p>
+  </div>
+
+  <script>
+    let score = 0;
+
+    function startTest() {
+      document.getElementById('start').classList.remove('active');
+      document.getElementById('q1').classList.add('active');
+    }
+
+    function answer(val) {
+      score += val;
+      showResult();
+    }
+
+    function showResult() {
+      document.getElementById('q1').classList.remove('active');
+      document.getElementById('result').classList.add('active');
+      const txt = score ? '☀️ 당신은 활기찬 아침형 인간!' : '🌙 당신은 여유로운 밤형 인간!';
+      document.getElementById('resultText').innerText = txt;
+    }
+  </script>
+</body>
+</html>
